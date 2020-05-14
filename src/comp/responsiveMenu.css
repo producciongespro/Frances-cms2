@@ -1,3 +1,18 @@
+.btn-menu:hover {
+  background-color: yellow;
+}
+
+.btn-menu:visited {
+  color: #00FF00;
+}
+
+.btn-menu:link {
+  color: #FF0000;
+}
+
+.btn-menu:active {
+  color: #0000FF;
+}
 
   
   .topnav {

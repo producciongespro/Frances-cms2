@@ -3,6 +3,10 @@ import './responsiveMenu.css';
 
 
 function ResponsiveMenu (props) {
+    console.log("Prueba");
+    
+    console.log("datos",props.arrayMenuBtns);
+    
 
     const handleDesplegarMenu =(e)=>{
         e.preventDefault();
@@ -16,17 +20,18 @@ function ResponsiveMenu (props) {
     }
 
 
-    return (
+    return (        
 
-<div className="topnav" id="myTopnav">
-  <a href="#home" className="active">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="icono" className="icon"  onClick={handleDesplegarMenu}>
-      <i className="fas fa-bars"></i>    
-  </a>
-</div>
+            <div className="topnav" id="myTopnav">
+                    {
+                        props.arrayMenuBtns.map((item,i)=>(
+                            <a href="prueba" key={"button"+i }>  {item} </a>
+                        ))
+                    }
+            <a href="icono" className="icon"  onClick={handleDesplegarMenu}>
+                <i className="fas fa-bars"></i>    
+            </a>
+            </div>
 
 
     );    

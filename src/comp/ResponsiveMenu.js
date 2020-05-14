@@ -2,11 +2,7 @@ import React from 'react';
 import './responsiveMenu.css';
 
 
-function ResponsiveMenu (props) {
-    console.log("Prueba");
-    
-    console.log("datos",props.arrayMenuBtns);
-    
+function ResponsiveMenu (props) {    
 
     const handleDesplegarMenu =(e)=>{
         e.preventDefault();
@@ -16,24 +12,27 @@ function ResponsiveMenu (props) {
             } else {
                 x.className = "topnav";
             }
-
     }
-
 
     return (        
 
             <div className="topnav" id="myTopnav">
                     {
-                        props.arrayMenuBtns.map((item,i)=>(
-                            <a href="prueba" key={"button"+i }>  {item} </a>
-                        ))
+                        props.arrayMenu.map((item,i)=>(
+                            <a 
+                                onClick={props.handleCargarVista}
+                                className="btn-menu"
+                                id={item.identificador} 
+                                href={item.identificador} 
+                                key={"button"+i }>  
+                                {item.etiqueta }                                 
+                            </a>
+                        ))                     
                     }
             <a href="icono" className="icon"  onClick={handleDesplegarMenu}>
                 <i className="fas fa-bars"></i>    
             </a>
             </div>
-
-
     );    
 }
 

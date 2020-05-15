@@ -1,45 +1,70 @@
 import React, {useState, useEffect } from 'react';
 import ResponsiveMenu from './comp/ResponsiveMenu';
 import Splash from './comp/Spalsh';
+import ContTextos from './comp/ContTextos';
+
 import getData from './mod/getData';
+import resaltar from './mod/resaltar';
+
+var arrayTextos= null;
+var arrayMenu= null;
 
 
 function App() {
-  const [arrayMenu, setArrayMenu ] = useState(null);
-  
+  const [compActual, setCompActual] = useState(null);
+  const [listo, setListo] = useState(false);
+    
 
   useEffect(()=>{
-    setup();    
+    iniciar();
   },[]);
 
   useEffect(()=>{   
-    //console.log(arrayMenu);        
+   //console.log(arrayTextos);        
   })
 
-  async function setup () {
-      setArrayMenu(await getData( "http://frances-cms.ws/obtener_tipos.php" ));            
+  async function iniciar () {
+      arrayMenu= await getData( "http://frances-cms.ws/obtener_tipos.php" );            
+      arrayTextos= await getData( "http://frances-cms.ws/obtener_textos.php" );    
+      setListo(true);
+      setCompActual( <ContTextos texto={arrayTextos[0].contenido  } /> )
+      console.log("arrayMenu",arrayMenu);
+      
   }
 
   const handleCargarVista =(e)=> {
     e.preventDefault();
-    let element = e.target;
+    resaltar(e.target, "btn-menu");    
+      console.log(e.target.id);
+
+      switch (e.target.id) {
+        case "bienvenida":
+            setCompActual( <ContTextos texto={arrayTextos[0].contenido  } /> )
+        break;        
+        case "publicaciones":
+            setCompActual( <h1> Publicaciones </h1> )
+        break;
+      
+        default:
+          break;
+      }
     
-    console.log(e.target.id);
-    //Se elimina la clase activa de todos los elementos
-    let btnMenu = document.getElementsByClassName("btn-menu");
-    console.log("btnMenu",btnMenu);
     
-    //btnMenu.classList.remove("active");
-    //Se le asigna la clase activa al elemento seleccionado    
-    element.classList.add("active");
+    
     
   }
 
   return (
     <div className="container">
       {
-        arrayMenu ?
-        <ResponsiveMenu arrayMenu={arrayMenu} handleCargarVista={handleCargarVista} />        
+        listo ?
+          <React.Fragment>            
+              <ResponsiveMenu arrayMenu={arrayMenu} handleCargarVista={handleCargarVista} />        
+              <br/>
+              {
+                compActual
+              }
+          </React.Fragment>
         :
         <Splash />
       }

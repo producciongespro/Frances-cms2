@@ -2,8 +2,8 @@ import React from 'react';
 import './responsiveMenu.css';
 
 
-function ResponsiveMenu (props) {    
-
+function ResponsiveMenu (props) {         
+    
     const handleDesplegarMenu =(e)=>{
         e.preventDefault();
         var x = document.getElementById("myTopnav");
@@ -13,20 +13,21 @@ function ResponsiveMenu (props) {
                 x.className = "topnav";
             }
     }
-
-    return (        
+  
+  return (        
 
             <div className="topnav" id="myTopnav">
                     {
                         props.arrayMenu.map((item,i)=>(
-                            <a 
-                                onClick={props.handleCargarVista}
-                                className="btn-menu"
-                                id={item.identificador} 
-                                href={item.identificador} 
-                                key={"button"+i }>  
-                                {item.etiqueta }                                 
-                            </a>
+                                <a 
+                                    onClick={props.handleCargarVista}
+                                    className="btn-menu"                                    
+                                    href={item.identificador}
+                                    key={"btn"+i}
+                                    id={item.identificador}          
+                                    >  
+                                    {item.etiqueta }                                 
+                                </a>
                         ))                     
                     }
             <a href="icono" className="icon"  onClick={handleDesplegarMenu}>

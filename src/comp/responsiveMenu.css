@@ -1,13 +1,11 @@
 .btn-menu:hover {
-  background-color: yellow;
+  background-color: turquoise;
 }
 
-.btn-menu:visited {
-  color: #00FF00;
-}
+
 
 .btn-menu:link {
-  color: #FF0000;
+  color: aqua;
 }
 
 .btn-menu:active {
